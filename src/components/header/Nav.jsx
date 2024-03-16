@@ -2,13 +2,13 @@ import avatar from '../../assets/avatar-icon.png';
 import Li from './Li';
 const Nav = () => {
     return (
-        <div className="navbar my-4 px-4 lg:p-0">
+        <div className="navbar my-4 p-0">
             <div className="navbar-start w-full lg:w-1/2">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost pl-0 lg:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                     </div>
-                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                    <ul tabIndex={0} className="menu dropdown-content mt-3 z-[1] p-2 shadow bg-base-300 rounded-box w-52">
                         <Li />
                     </ul>
                 </div>

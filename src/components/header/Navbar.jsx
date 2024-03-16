@@ -1,6 +1,6 @@
 import avatar from '../../assets/avatar-icon.png';
 import Li from './Li';
-const Nav = () => {
+const Navbar = () => {
     return (
         <div className="navbar my-4 p-0">
             <div className="navbar-start w-full lg:w-1/2">
@@ -32,4 +32,4 @@ const Nav = () => {
     );
 };
 
-export default Nav;
+export default Navbar;

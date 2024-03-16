@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-const Item = ({ type, data }) => {
+const Item = ({ type, data, handlePreparingFood }) => {
     return (
         <>
             {data.map((item, idx) => <tr key={item.id} className="hover font-normal">
@@ -8,10 +8,10 @@ const Item = ({ type, data }) => {
                 <td>{item.time} mins</td>
                 <td>{item.calorie} cal</td>
                 {!type && <td className="flex lg:hidden">
-                    <button className="btn font-lexend bg-spring-green-500 hover:bg-spring-green-600 rounded-[50px] text-haiti-950 btn-sm xl:btn-md">P</button>
+                    <button onClick={() => handlePreparingFood(item.id)} className="btn font-lexend bg-spring-green-500 hover:bg-spring-green-600 rounded-[50px] text-haiti-950 btn-sm xl:btn-md">P</button>
                 </td>}
                 {!type && <td className="hidden lg:flex">
-                    <button className="btn font-lexend bg-spring-green-500 hover:bg-spring-green-600 rounded-[50px] text-haiti-950 btn-sm xl:btn-md">Prepare</button>
+                    <button onClick={() => handlePreparingFood(item.id)} className="btn font-lexend bg-spring-green-500 hover:bg-spring-green-600 rounded-[50px] text-haiti-950 btn-sm xl:btn-md">Prepare</button>
                 </td>}
             </tr>)}
         </>
@@ -19,6 +19,8 @@ const Item = ({ type, data }) => {
     );
 };
 Item.propTypes = {
-    type: PropTypes.bool.isRequired
+    type: PropTypes.bool.isRequired,
+    data: PropTypes.array.isRequired,
+    handlePreparingFood: PropTypes.func
 };
 export default Item;

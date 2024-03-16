@@ -5,8 +5,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const Index = () => {
     const [wantToCook, setWantToCook] = useState([]);
+    const [preparingFood, setPreparingFood] = useState([]);
     const handleWantToCook = recipe => {
-        const duplicate = wantToCook.find(item => item.id === recipe.id ? true : false);
+        const duplicate = wantToCook.find(item => item.id === recipe.id);
         if (duplicate) {
             return toast.warning('Recipe already added!');
         }
@@ -14,6 +15,17 @@ const Index = () => {
         setWantToCook(updatedWantToCook);
         return toast.success('Recipe added!');
     };
+    const handlePreparingFood = id => {
+        const duplicate = preparingFood.find(item => item.id === id);
+        if (duplicate) {
+            return toast.warning('Already Cooking!');
+        }
+        const newRecipe = wantToCook.find(item => item.id === id);
+        const filterWantToCook = wantToCook.filter(item => item.id !== id);
+        setWantToCook(filterWantToCook);
+        setPreparingFood([...preparingFood, newRecipe]);
+        return toast.success('Successfully moved to cooking section!');
+    }
     return (
         <div className="my-20">
             <ToastContainer stacked closeOnClick draggable />
@@ -26,7 +38,7 @@ const Index = () => {
                     <Recipes handleWantToCook={handleWantToCook} />
                 </div>
                 <div className="md:col-span-5">
-                    <Sidebar wantToCook={wantToCook} />
+                    <Sidebar wantToCook={wantToCook} preparingFood={preparingFood} handlePreparingFood={handlePreparingFood} />
                 </div>
             </div>
         </div>

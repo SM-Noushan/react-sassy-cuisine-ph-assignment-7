@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
 import Item from './Item';
-const Details = ({ type, wantToCook }) => {
+const Details = ({ type, data, handlePreparingFood }) => {
     return (
         <div className="overflow-x-auto mt-2">
             <table className="table font-fira_sans text-[#878787] table-xs lg:table-md">
@@ -14,14 +13,14 @@ const Details = ({ type, wantToCook }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    <Item type={type} data={type ? [] : wantToCook} />
+                    <Item type={type} data={data} handlePreparingFood={type ? () => { } : handlePreparingFood} />
                 </tbody>
                 {
                     type && <tfoot className="text-xs lg:text-base font-medium font-[#282828CC]">
                         <tr>
                             <th colSpan="3">&nbsp;</th>
-                            <th>Total Time = <br /> 45 minutes</th>
-                            <th>Total Calories = <br /> 45 calories</th>
+                            <th>Total Time = <br /> {data.reduce(((prev, curr) => prev + curr.time), 0)} mins</th>
+                            <th>Total Calories = <br /> {data.reduce(((prev, curr) => prev + curr.calorie), 0)} cal</th>
                         </tr>
                     </tfoot>
                 }
@@ -31,6 +30,7 @@ const Details = ({ type, wantToCook }) => {
 };
 Details.propTypes = {
     type: PropTypes.bool.isRequired,
-    wantToCook: PropTypes.array.isRequired
+    data: PropTypes.array.isRequired,
+    handlePreparingFood: PropTypes.func
 };
 export default Details;

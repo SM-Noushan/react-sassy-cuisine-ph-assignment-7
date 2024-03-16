@@ -37,7 +37,7 @@ const Recipe = ({ data }) => {
                     </div>
                 </div>
                 <div className="card-actions">
-                    <button className="btn bg-spring-green-500 hover:bg-spring-green-600 rounded-full">Want To Cook</button>
+                    <button className="btn bg-spring-green-500 hover:bg-spring-green-600 rounded-full text-haiti-950">Want To Cook</button>
                 </div>
             </div>
         </div>

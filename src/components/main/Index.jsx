@@ -1,6 +1,12 @@
 import Recipes from "./recipes/Recipes";
 import Sidebar from "./recipebar/Sidebar";
+import { useState } from "react";
 const Index = () => {
+    const [wantToCook, setWantToCook] = useState([]);
+    const handleWantToCook = recipe => {
+        const updatedWantToCook = [...wantToCook, recipe];
+        setWantToCook(updatedWantToCook);
+    };
     return (
         <div className="my-20">
             <div className="text-center md:w-2/3 mx-auto">
@@ -9,10 +15,10 @@ const Index = () => {
             </div>
             <div className="grid md:grid-cols-12 gap-6 mt-12">
                 <div className="md:col-span-7">
-                    <Recipes />
+                    <Recipes handleWantToCook={handleWantToCook} />
                 </div>
                 <div className="md:col-span-5">
-                    <Sidebar />
+                    <Sidebar wantToCook={wantToCook} />
                 </div>
             </div>
         </div>

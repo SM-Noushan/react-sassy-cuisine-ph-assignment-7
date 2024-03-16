@@ -1,7 +1,7 @@
 import clock_icon from '../../../assets/clock-icon.png';
 import burn_icon from '../../../assets/fire-icon.png';
 import PropTypes from 'prop-types';
-const Recipe = ({ data }) => {
+const Recipe = ({ data, handleWantToCook }) => {
     const { recipe_image: image,
         recipe_name: name,
         short_description,
@@ -37,13 +37,19 @@ const Recipe = ({ data }) => {
                     </div>
                 </div>
                 <div className="card-actions">
-                    <button className="btn bg-spring-green-500 hover:bg-spring-green-600 rounded-full text-haiti-950">Want To Cook</button>
+                    <button onClick={() => handleWantToCook({
+                        'id': data.recipe_id,
+                        'name': name,
+                        'time': parseInt(preparing_time),
+                        'calorie': parseInt(calories)
+                    })} className="btn bg-spring-green-500 hover:bg-spring-green-600 rounded-full text-haiti-950">Want To Cook</button>
                 </div>
             </div>
         </div>
     );
 };
 Recipe.propTypes = {
-    data: PropTypes.object.isRequired
+    data: PropTypes.object.isRequired,
+    handleWantToCook: PropTypes.func.isRequired
 };
 export default Recipe;

@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
-const Details = ({ type }) => {
+import { useEffect, useState } from 'react';
+import Item from './Item';
+const Details = ({ type, wantToCook }) => {
     return (
         <div className="overflow-x-auto mt-2">
-            <table className="table font-fira_sans text-[#878787] table-xs lg:table-md xl:table-lg">
+            <table className="table font-fira_sans text-[#878787] table-xs lg:table-md">
                 <thead className="xl:text-base font-medium">
                     <tr>
                         <th>SL</th>
@@ -12,18 +14,7 @@ const Details = ({ type }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr className="hover font-normal">
-                        <th>1</th>
-                        <td colSpan="2">Chicken Caesar Salad</td>
-                        <td>20 mins</td>
-                        <td>400 cal</td>
-                        {!type && <td className="flex lg:hidden">
-                            <button className="btn font-lexend bg-spring-green-500 hover:bg-spring-green-600 rounded-[50px] text-haiti-950 btn-sm xl:btn-md">P</button>
-                        </td>}
-                        {!type && <td className="hidden lg:flex">
-                            <button className="btn font-lexend bg-spring-green-500 hover:bg-spring-green-600 rounded-[50px] text-haiti-950 btn-sm xl:btn-md">Prepare</button>
-                        </td>}
-                    </tr>
+                    <Item type={type} data={type ? [] : wantToCook} />
                 </tbody>
                 {
                     type && <tfoot className="text-xs lg:text-base font-medium font-[#282828CC]">
@@ -39,6 +30,7 @@ const Details = ({ type }) => {
     );
 };
 Details.propTypes = {
-    type: PropTypes.bool.isRequired
+    type: PropTypes.bool.isRequired,
+    wantToCook: PropTypes.array.isRequired
 };
 export default Details;

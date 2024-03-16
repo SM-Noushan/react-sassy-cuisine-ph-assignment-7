@@ -1,14 +1,22 @@
 import Recipes from "./recipes/Recipes";
 import Sidebar from "./recipebar/Sidebar";
 import { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Index = () => {
     const [wantToCook, setWantToCook] = useState([]);
     const handleWantToCook = recipe => {
+        const duplicate = wantToCook.find(item => item.id === recipe.id ? true : false);
+        if (duplicate) {
+            return toast.warning('Recipe already added!');
+        }
         const updatedWantToCook = [...wantToCook, recipe];
         setWantToCook(updatedWantToCook);
+        return toast.success('Recipe added!');
     };
     return (
         <div className="my-20">
+            <ToastContainer stacked closeOnClick draggable />
             <div className="text-center md:w-2/3 mx-auto">
                 <h1 className="text-2xl md:text-3xl lg:text-5xl font-semibold my-6">Our Recipes</h1>
                 <p className="leading-6 opacity-60">At Sassy Cuisine, we believe in the power of flavor. Our recipes are carefully curated, blending unique ingredients and techniques to create dishes that delight the senses and bring joy to your dining experience.</p>
